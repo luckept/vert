@@ -33,14 +33,15 @@
         source = document.createElement("script")
         source.setAttribute("type", "module")
         source.setAttribute("src", sourceName)
+        source.setAttribute("id", `${scriptID}:js`)
       } else if (type='css') {
         sourceName = BASE_PATH + sourceName
         source = document.createElement("link")
         source.setAttribute("rel", "stylesheet")
         source.setAttribute("type", "text/css")
         source.setAttribute("href", sourceName)
+        source.setAttribute("id", `${scriptID}:css`)
       }
-      source.setAttribute("id", scriptID)
       document.head.appendChild(source)
     }
   }
