@@ -1,3 +1,1 @@
-export function isFileTypeEqualCss(param) {
-    return param === 'css';
-}
+export * from './type.js';
