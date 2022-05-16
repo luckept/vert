@@ -3,17 +3,20 @@ const path = require('path')
 
 import { fileType, isFileTypeEqualCss } from './utils/index.js'
 
-// TODO: 生产环境支持关闭监听与写入
+// 是否是开发环境
+const isDevelopment = true
 
 class Main {
   static themeID = 'vert'
   static themeBasePath = `/Users/luckept/Documents/SiYuan/conf/appearance/themes/${this.themeID}/src`
   static dependMap = new Map()
 
-  static exec() {
+  static exec(isDevelopment: boolean) {
+    if (isDevelopment) {
+      // 文件自动装配
+      this.fileHandler()
+    }
     console.log(`Hello Vert`)
-    // 文件自动装配
-    this.fileHandler()
   }
 
   // 文件处理器
@@ -95,4 +98,4 @@ class Main {
   }
 }
 
-Main.exec()
+Main.exec(isDevelopment)
