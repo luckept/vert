@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "@types/node": "^17.0.33"
+  },
+  "name": "vert",
+  "description": "[思源笔记](https://github.com/siyuan-note/siyuan)暗系主题",
+  "version": "1.0.0",
+  "main": "theme.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luckept/vert.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luckept/vert/issues"
+  },
+  "homepage": "https://github.com/luckept/vert#readme"
+}
