@@ -1,31 +1,28 @@
-"use strict";
-var fs = require('fs');
-var path = require('path');
-function isFileTypeEqualCss(param) {
-    return param === 'css';
-}
-var Main = /** @class */ (function () {
-    function Main() {
-    }
-    Main.exec = function () {
-        console.log("Hello Vert");
+var _a;
+const fs = require('fs');
+const path = require('path');
+import { isFileTypeEqualCss } from './utils/index.js';
+console.log(isFileTypeEqualCss);
+// TODO: 生产环境支持关闭监听与写入
+class Main {
+    static exec() {
+        console.log(`Hello Vert`);
         // 文件自动装配
         this.fileHandler();
-    };
+    }
     // 文件处理器
-    Main.fileHandler = function () {
+    static fileHandler() {
         // css 文件自动引入
         this.autoFileImport('css');
         // css 文件监听
         this.batchSolveFileWatch('css');
-    };
+    }
     // 批量处理文件监听
-    Main.batchSolveFileWatch = function (fileType) {
-        var _this = this;
+    static batchSolveFileWatch(fileType) {
         if (isFileTypeEqualCss(fileType)) {
-            this.listDirFiles(fileType).forEach(function (relativePath) {
+            this.listDirFiles(fileType).forEach((relativePath) => {
                 if (isFileTypeEqualCss(fileType)) {
-                    _this.fileWatcher("".concat(_this.themeBasePath, "/css_modules/"), relativePath);
+                    this.fileWatcher(`${this.themeBasePath}/css_modules/`, relativePath);
                 }
             });
         }
@@ -33,23 +30,19 @@ var Main = /** @class */ (function () {
             // TODO
             console.log('JS 判断');
         }
-    };
+    }
     // 包装内容为 import 的形式
-    Main.packagingContent = function (fileName) {
-        return fileName !== '' ? "@import url('./css_modules/".concat(fileName, "')") : '';
-    };
+    static packagingContent(fileName) {
+        return fileName !== '' ? `@import url('./css_modules/${fileName}')` : '';
+    }
     // 文件自动引入
-    Main.autoFileImport = function (fileType) {
-        var _this = this;
+    static autoFileImport(fileType) {
         if (isFileTypeEqualCss(fileType)) {
-            var listCssfile = this.listDirFiles(fileType);
-            // 读取 index.css 文件内容
-            var indexCSSFileContent = fs.readFileSync(path.resolve(this.themeBasePath, 'index.css'), 'utf-8');
+            const listCssfile = this.listDirFiles(fileType);
+            // TODO 读取 index.css 文件内容, 做 diff 分析可能会用
+            const indexCSSFileContent = fs.readFileSync(path.resolve(this.themeBasePath, 'index.css'), 'utf-8');
             // 处理覆盖 index.css 内容
-            var rewriteContent = listCssfile.reduce(function (acc, cur) {
-                return (acc = acc.concat("".concat(_this.packagingContent(cur), ";")), acc);
-            }, '');
-            // (acc = `${acc}`.concat(`${cur};`), acc), '')
+            const rewriteContent = listCssfile.reduce((acc, cur) => (acc = acc.concat(`${this.packagingContent(cur)};`), acc), '');
             // 写入
             fs.writeFileSync(path.resolve(this.themeBasePath, 'index.css'), rewriteContent);
         }
@@ -57,40 +50,42 @@ var Main = /** @class */ (function () {
             // TODO
             console.log('脚本相关判断');
         }
-    };
+    }
     // 文件监听
-    Main.fileWatcher = function (basePath, relativePath) {
-        var _this = this;
-        fs.watch(path.resolve(basePath, relativePath), function () {
-            // TODO: 监听时观察当前的依赖是否和上次相同
-            _this.fileHandler();
+    static fileWatcher(basePath, relativePath) {
+        fs.watch(path.resolve(basePath, relativePath), () => {
+            // 监听时观察当前的依赖是否和上次相同
+            this.isDependChanged();
             // 刷新页面
             window.location.reload();
         });
-    };
+    }
+    // 判断当前的依赖是否和上次相同
+    static isDependChanged() {
+        const dirFiles = fs.readdirSync(`${this.themeBasePath}/css_modules/`);
+        const mapCss_length = this.dependMap.get('css');
+        const currentCss_length = dirFiles.length;
+        if (mapCss_length !== currentCss_length) {
+            // 目录树发生了增减，需要触发文件的重新监听和写入
+            this.fileHandler();
+        }
+        else {
+            // TODO: 做 diff
+        }
+    }
     // 读取文件目录内的文件
-    Main.listDirFiles = function (fileType) {
+    static listDirFiles(fileType) {
         if (fileType === 'css') {
-            var dirFiles = fs.readdirSync("".concat(this.themeBasePath, "/css_modules/"));
-            var mapCss_length = this.dependMap.get('css');
-            var currentCss_length = dirFiles.length;
-            if (mapCss_length !== currentCss_length) {
-                // 目录树发生了增减，需要触发文件的重新监听和写入
-            }
-            else {
-                // TODO: 做 diff
-            }
+            const dirFiles = fs.readdirSync(`${this.themeBasePath}/css_modules/`);
             this.dependMap.set('css', dirFiles.length);
             return dirFiles;
         }
         // Script
-        return fs.readdirSync("".concat(this.themeBasePath, "/script_modules/"));
-    };
-    var _a;
-    _a = Main;
-    Main.themeID = 'vert';
-    Main.themeBasePath = "/Users/luckept/Documents/SiYuan/conf/appearance/themes/".concat(_a.themeID, "/src");
-    Main.dependMap = new Map();
-    return Main;
-}());
+        return fs.readdirSync(`${this.themeBasePath}/script_modules/`);
+    }
+}
+_a = Main;
+Main.themeID = 'vert';
+Main.themeBasePath = `/Users/luckept/Documents/SiYuan/conf/appearance/themes/${_a.themeID}/src`;
+Main.dependMap = new Map();
 Main.exec();

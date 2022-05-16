@@ -1,11 +1,9 @@
 const fs = require('fs')
 const path = require('path')
 
-type fileType = 'css' | 'script'
+import { fileType, isFileTypeEqualCss } from './utils/index.js'
 
-function isFileTypeEqualCss (param: any): param is 'css' {
-  return param === 'css'
-}
+// TODO: 生产环境支持关闭监听与写入
 
 class Main {
   static themeID = 'vert'
