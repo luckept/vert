@@ -51,9 +51,10 @@ export class File {
     }
   }
 
+  // TODO OR NOT：考虑到实际情况不太会频繁触发事件，暂时不做防抖处理
   // 文件监听
   static fileWatcher(basePath: string, relativePath: string) {
-    fs.watch(path.resolve(basePath, relativePath) , () => {
+    fs.watch(path.resolve(basePath, relativePath), () => {
       // 监听时观察当前的依赖是否和上次相同
       this.isDependChanged()
       // 刷新页面
@@ -70,7 +71,8 @@ export class File {
       // 目录树发生了增减，需要触发文件的重新监听和写入
       this.fileHandler()
     } else {
-      // TODO: 做 diff
+      // TODO OR NOT: 本应做 diff 计算依赖文件是否真正发生改变，但考虑优先级较低，通常来说也不太会有【频繁修改文件名字的同时保持文件数量不变的情况】，暂时不做处理
+      this.fileHandler()
     }
   }
 
