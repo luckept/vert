@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-import { fileType, isFileTypeEqualCss } from '../../utils/index.js'
+import { fileType, isFileTypeEqualCss } from '../utils/index.js'
 
 export class File {
   static themeID = 'vert'
