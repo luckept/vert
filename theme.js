@@ -3,7 +3,8 @@
 
   class ThemeClass {
     static pathConfig = {
-      wiredTS: '/appearance/themes/vert/dist/'
+      wiredTS: '/appearance/themes/vert/dist/',
+      wiredCSS: '/appearance/themes/vert/src/'
     }
 
     /**
@@ -12,6 +13,11 @@
      */
     static wiredTS(sourceName, type='script') {
       BASE_PATH = this.pathConfig.wiredTS
+      this.createSourceEle(sourceName, BASE_PATH, type)
+    }
+
+    static wiredCSS(sourceName, type='css') {
+      BASE_PATH = this.pathConfig.wiredCSS
       this.createSourceEle(sourceName, BASE_PATH, type)
     }
 
@@ -27,6 +33,12 @@
         source = document.createElement("script")
         source.setAttribute("type", "module")
         source.setAttribute("src", sourceName)
+      } else if (type='css') {
+        sourceName = BASE_PATH + sourceName
+        source = document.createElement("link")
+        source.setAttribute("rel", "stylesheet")
+        source.setAttribute("type", "text/css")
+        source.setAttribute("href", sourceName)
       }
       source.setAttribute("id", scriptID)
       document.head.appendChild(source)
@@ -34,4 +46,5 @@
   }
 
   ThemeClass.wiredTS('index.ts')
+  ThemeClass.wiredCSS('index.css')
 })()
