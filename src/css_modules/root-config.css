@@ -1,3 +1,36 @@
 :root {
-  --b3-theme-background: blue;
+  /* 编辑区及设置界面及部分 UI 处的背景色 */
+  --b3-theme-background: #22212d;
+  /* 设置界面滑块图标及部分文字配色 */
+  --b3-theme-primary: #9a7bff;
+  /* 相伴一生图标颜色: （目前仅发现这个元素应用了此配置） */
+  --b3-theme-secondary: #ff74bf;
+  /* tab 选项卡 border 颜色，部分元素背景色 */
+  --b3-theme-background-light: #9a4a76;
+  /* 界面左右功能区主背景色 */
+  --b3-theme-surface: #151321;
+  /* 警告处颜色由原来的红色改为浅蓝色的提醒，看多了红色容易心里紧张 */
+  --b3-theme-error: #47ccbf;
+  /* 界面图标默认颜色 */
+  --b3-theme-on-surface-light: #7b6eab;
+  /* Mac 得益于优质的渲染效果，仅将英文字体首选改为 Menlo，其他不做变更 */
+  --b3-font-family: "Menlo", "quote", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+  /* 界面边界线条 */
+  --b3-border-color: #0b0a10;
+  /* 滚动条降低颜色亮度 */
+  --b3-scroll-color: #44444a;
+  /* 列表头部色系 */
+  --b3-list-hover: #22212d;
+  /* 菜单背景色选用和功能区相同的配色 */
+  --b3-menu-background: #151320;
+  /* 鼠标 hover 元素的提示背景色 */
+  /* TODO: 后续需要调整提示框样式 */
+  --b3-tooltips-color: #2c2541;
+  /* 编辑器搜索 Cmd + P 匹配字符颜色 */
+  --b3-protyle-inline-mark-color: #47ffeb;
+  /* 编辑器搜索 Cmd + P 匹配字符背景颜色 */
+  --b3-protyle-inline-mark-background: #464059;
+  /* 块引用文字颜色 */
+  /* TODO: 后续需要调整块引用样式 */
+  --b3-protyle-inline-blockref-color: #e262d3;
 }
