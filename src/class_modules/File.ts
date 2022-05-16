@@ -39,7 +39,7 @@ export class File {
     if (isFileTypeEqualCss(fileType)) {
       const listCssfile = this.listDirFiles(fileType)
       // TODO 读取 index.css 文件内容, 做 diff 分析可能会用
-      const indexCSSFileContent = fs.readFileSync(path.resolve(this.themeBasePath, 'index.css'), 'utf-8')
+      // const indexCSSFileContent = fs.readFileSync(path.resolve(this.themeBasePath, 'index.css'), 'utf-8')
       // 处理覆盖 index.css 内容
       const rewriteContent = listCssfile.reduce((acc, cur) => 
         (acc = acc.concat(`${this.packagingContent(cur)};`), acc), '')
