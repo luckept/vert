@@ -1,13 +1,16 @@
 {
   "devDependencies": {
-    "@types/node": "^17.0.33"
+    "@types/node": "^17.0.33",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0"
   },
   "name": "vert",
   "description": "[思源笔记](https://github.com/siyuan-note/siyuan)暗系主题",
   "version": "1.0.0",
   "main": "theme.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "commitizen": "commitizen init cz-conventional-changelog --save --save-exact",
+    "cz": "git cz"
   },
   "repository": {
     "type": "git",
@@ -19,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/luckept/vert/issues"
   },
-  "homepage": "https://github.com/luckept/vert#readme"
+  "homepage": "https://github.com/luckept/vert#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
