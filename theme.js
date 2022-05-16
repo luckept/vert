@@ -10,7 +10,7 @@
      * 装配 TS 文件
      * @param {string} sourceName 资源路径
      */
-    static wiredTS(sourceName, ) {
+    static wiredTS(sourceName) {
       BASE_PATH = this.pathConfig.wiredTS
       this.createSourceEle(sourceName, BASE_PATH)
     }
