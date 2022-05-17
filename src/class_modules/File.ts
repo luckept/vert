@@ -57,7 +57,7 @@ export class File {
 
   // 包装内容为 import 的形式
   static packagingContent(fileName: string, furtherPath: string) {
-    // 考虑到有可能先创建文件夹再创建 css 文件，且通常不会有 .css.css 的命名方法，所以这里就不使用正则了，默认任务目录名不能含有 . 
+    // 考虑到有可能先创建文件夹再创建 css 文件，且通常不会有 .css.css 的命名方法，所以这里就不使用正则了，默认 css 模块下的文件夹名不能含有 . 
     if(fileName.endsWith('.css')) {
       return fileName !== '' ? furtherPath === '' ? `@import url('./css_modules/${fileName}');` : `@import url('./css_modules/${furtherPath}/${fileName}');` : ''
     } else if (fileName.indexOf('.') !== -1) {
