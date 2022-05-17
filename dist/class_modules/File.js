@@ -5,12 +5,24 @@ import { isFileTypeEqualCss } from '../utils/index.js';
 export class File {
     // 文件处理器
     static fileHandler() {
-        // css 文件自动引入
+        // css 文件自动 @import
         this.autoFileImport('css');
-        // css 文件监听
+        // css 文件监听并执行页面刷新操作
         this.batchSolveFileWatch('css');
         // css 目录监听
         this.watchCssDir();
+    }
+    // 文件自动引入
+    static autoFileImport(fileType) {
+        if (isFileTypeEqualCss(fileType)) {
+            // css 文件自动引入
+            const rewriteContent = this.autoFileImportContentResolve('css');
+            // 写入 index 文件
+            fs.writeFileSync(path.resolve(this.themeBasePath, 'index.css'), rewriteContent);
+        }
+        else {
+            // TODO OR NOT：可能存在的拓展
+        }
     }
     // css 目录监听
     static watchCssDir() {
@@ -37,19 +49,20 @@ export class File {
         }
     }
     // 包装内容为 import 的形式
-    static packagingContent(fileName) {
-        return fileName !== '' ? `@import url('./css_modules/${fileName}')` : '';
+    static packagingContent(fileName, furtherPath) {
+        // 考虑到有可能先创建文件夹再创建 css 文件，且通常不会有 .css.css 的命名方法，所以这里就不使用正则了
+        if (fileName.endsWith('.css')) {
+            return fileName !== '' ? furtherPath === '' ? `@import url('./css_modules/${fileName}');` : `@import url('./css_modules/${furtherPath}/${fileName}');` : '';
+        }
+        // 说明此时为文件夹，需要进一步递归
+        return this.autoFileImportContentResolve('css', fileName);
     }
-    // 文件自动引入
-    static autoFileImport(fileType) {
+    // 文件自动引入路径拼接处理
+    static autoFileImportContentResolve(fileType, furtherPath = '') {
         if (isFileTypeEqualCss(fileType)) {
-            const listCssfile = this.listDirFiles(fileType);
-            // TODO 读取 index.css 文件内容, 做 diff 分析可能会用
-            // const indexCSSFileContent = fs.readFileSync(path.resolve(this.themeBasePath, 'index.css'), 'utf-8')
+            const listCssfile = this.listDirFiles(fileType, furtherPath);
             // 处理覆盖 index.css 内容
-            const rewriteContent = listCssfile.reduce((acc, cur) => (acc = acc.concat(`${this.packagingContent(cur)};`), acc), '');
-            // 写入
-            fs.writeFileSync(path.resolve(this.themeBasePath, 'index.css'), rewriteContent);
+            return listCssfile.reduce((acc, cur) => (acc = acc.concat(`${this.packagingContent(cur, furtherPath)}`), acc), '');
         }
         else {
             // TODO
@@ -64,10 +77,15 @@ export class File {
             window.location.reload();
         });
     }
-    // 读取文件目录内的文件
-    static listDirFiles(fileType) {
+    /**
+     * 读取文件目录内的文件
+     * @param fileType
+     * @param furtherPath 为了上面的递归来使用
+     * @returns
+     */
+    static listDirFiles(fileType, furtherPath = '') {
         if (fileType === 'css') {
-            const dirFiles = fs.readdirSync(`${this.themeBasePath}/css_modules/`);
+            const dirFiles = fs.readdirSync(path.resolve(`${this.themeBasePath}/css_modules/`, furtherPath));
             this.dependMap.set('css', dirFiles.length);
             return dirFiles;
         }
