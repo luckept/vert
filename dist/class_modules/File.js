@@ -50,9 +50,14 @@ export class File {
     }
     // 包装内容为 import 的形式
     static packagingContent(fileName, furtherPath) {
-        // 考虑到有可能先创建文件夹再创建 css 文件，且通常不会有 .css.css 的命名方法，所以这里就不使用正则了
+        // 考虑到有可能先创建文件夹再创建 css 文件，且通常不会有 .css.css 的命名方法，所以这里就不使用正则了，默认任务目录名不能含有 . 
         if (fileName.endsWith('.css')) {
             return fileName !== '' ? furtherPath === '' ? `@import url('./css_modules/${fileName}');` : `@import url('./css_modules/${furtherPath}/${fileName}');` : '';
+        }
+        else if (fileName.indexOf('.') !== -1) {
+            // 可能他是一个非 css 也非目录的其他文件，此时应返回空字符串并给予提示
+            console.error('在 css 模块中错误创建了非 css 文件');
+            return '';
         }
         // 说明此时为文件夹，需要进一步递归
         return this.autoFileImportContentResolve('css', fileName);
