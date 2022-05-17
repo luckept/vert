@@ -1,0 +1,43 @@
+/* 
+  本文件使用了如下已存在 css 变量
+  --b3-protyle-inline-blockref-color 紫色 #e262d3
+  --b3-protyle-inline-mark-color 蓝色 #47ffeb
+*/
+/* 
+  本文件新增如下变量
+*/
+:root {
+  --b3-theme-icon: #796ea8
+}
+
+/* dockLeft 以及 dockRight 上图标默认状态 */
+:is(.toolbar__item--active, .dock__item--active) {
+  color: var(--b3-protyle-inline-blockref-color);
+  background-color: transparent;
+}
+
+/* 功能区部分 icon 默认样式 */
+:is(.b3-form__icon-icon, .block__icon, .svg) {
+  color: var(--b3-theme-icon);
+}
+
+/* ----------- Hover 操作 ----------- */
+
+/* 功能区部分 icon */
+:is(.b3-form__icon):hover :is(.b3-form__icon-icon, .block__icon, .svg)  {
+  color: var(--b3-protyle-inline-mark-color) !important;
+  cursor: pointer !important;
+}
+
+/* 功能区另外部分 icon */
+:is(.b3-form__icon-icon, .block__icon, .svg):hover {
+  color: var(--b3-protyle-inline-mark-color) !important;
+}
+
+/* 
+  dockLeft 以及 dockRight 图标 
+  toolbar 上图标默认状态   
+*/
+:is(.toolbar__item, .dock__item):hover {
+  color: var(--b3-protyle-inline-mark-color);
+}
