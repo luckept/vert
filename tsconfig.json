@@ -1,4 +1,5 @@
 {
+  "include": ["./src/*.ts"],/*指定编译文件，属性指定一个文件glob匹配模式列表*/
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
@@ -9,7 +10,6 @@
     // "disableSourceOfProjectReferenceRedirect": true,  /* Disable preferring source files instead of declaration files when referencing composite projects */
     // "disableSolutionSearching": true,                 /* Opt a project out of multi-project reference checking when editing. */
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
-
     /* Language and Environment */
     "target": "es6",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     // "lib": [],                                        /* Specify a set of bundled library declaration files that describe the target runtime environment. */

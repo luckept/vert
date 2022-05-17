@@ -2,13 +2,15 @@
   "devDependencies": {
     "@types/node": "^17.0.33",
     "commitizen": "^4.2.4",
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "nodemon": "^2.0.16"
   },
   "name": "vert",
   "description": "[思源笔记](https://github.com/siyuan-note/siyuan)暗系主题",
   "version": "1.0.0",
   "main": "theme.js",
   "scripts": {
+    "watch": "nodemon",
     "commitizen": "commitizen init cz-conventional-changelog --save --save-exact",
     "cz": "git cz"
   },

@@ -1,6 +1,6 @@
 import { File } from "./class_modules/index.js";
 // 是否是开发环境
-const isDevelopment = true;
+const isDevelopment = false;
 class Main {
     static exec(isDevelopment) {
         if (isDevelopment) {

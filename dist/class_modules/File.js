@@ -33,7 +33,7 @@ export class File {
         if (isFileTypeEqualCss(fileType)) {
             const listCssfile = this.listDirFiles(fileType);
             // TODO 读取 index.css 文件内容, 做 diff 分析可能会用
-            const indexCSSFileContent = fs.readFileSync(path.resolve(this.themeBasePath, 'index.css'), 'utf-8');
+            // const indexCSSFileContent = fs.readFileSync(path.resolve(this.themeBasePath, 'index.css'), 'utf-8')
             // 处理覆盖 index.css 内容
             const rewriteContent = listCssfile.reduce((acc, cur) => (acc = acc.concat(`${this.packagingContent(cur)};`), acc), '');
             // 写入
@@ -44,6 +44,7 @@ export class File {
             console.log('脚本相关判断');
         }
     }
+    // TODO OR NOT：考虑到实际情况不太会频繁触发事件，暂时不做防抖处理
     // 文件监听
     static fileWatcher(basePath, relativePath) {
         fs.watch(path.resolve(basePath, relativePath), () => {
@@ -63,7 +64,8 @@ export class File {
             this.fileHandler();
         }
         else {
-            // TODO: 做 diff
+            // TODO OR NOT: 本应做 diff 计算依赖文件是否真正发生改变，但考虑优先级较低，通常来说也不太会有【频繁修改文件名字的同时保持文件数量不变的情况】，暂时不做处理
+            this.fileHandler();
         }
     }
     // 读取文件目录内的文件
