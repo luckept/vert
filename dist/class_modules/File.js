@@ -89,7 +89,7 @@ export class File {
      * @returns
      */
     static listDirFiles(fileType, furtherPath = '') {
-        if (fileType === 'css') {
+        if (isFileTypeEqualCss(fileType)) {
             const dirFiles = fs.readdirSync(path.resolve(`${this.themeBasePath}/css_modules/`, furtherPath));
             return dirFiles;
         }
