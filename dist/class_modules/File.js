@@ -91,7 +91,6 @@ export class File {
     static listDirFiles(fileType, furtherPath = '') {
         if (fileType === 'css') {
             const dirFiles = fs.readdirSync(path.resolve(`${this.themeBasePath}/css_modules/`, furtherPath));
-            this.dependMap.set('css', dirFiles.length);
             return dirFiles;
         }
         // Script
@@ -101,5 +100,4 @@ export class File {
 _a = File;
 File.themeID = 'vert';
 File.themeBasePath = `/Users/luckept/Documents/SiYuan/conf/appearance/themes/${_a.themeID}/src`;
-File.dependMap = new Map();
 File.isOpenDirWatch = false;

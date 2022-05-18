@@ -5,7 +5,6 @@ import { fileType, isFileTypeEqualCss } from '../utils/index.js'
 export class File {
   static themeID = 'vert'
   static themeBasePath = `/Users/luckept/Documents/SiYuan/conf/appearance/themes/${this.themeID}/src`
-  static dependMap = new Map()
   static isOpenDirWatch = false
 
   // 文件处理器
@@ -100,7 +99,6 @@ export class File {
   static listDirFiles(fileType: fileType, furtherPath: string=''): Array<string> {
     if (fileType === 'css') {
       const dirFiles = fs.readdirSync(path.resolve(`${this.themeBasePath}/css_modules/`, furtherPath))
-      this.dependMap.set('css', dirFiles.length)
       return dirFiles
     }
     // Script
