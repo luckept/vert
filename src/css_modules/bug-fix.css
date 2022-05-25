@@ -4,3 +4,9 @@
 .fn__flex-1 {
   min-height: 0;
 }
+
+/* 优化编辑区因为滚动条出现造成的界面挤压 */
+.protyle-content {
+  overflow-y: overlay;
+  padding-right: 10px;
+}
