@@ -1,0 +1,5 @@
+/* 全局字体引入 */
+@font-face {
+  font-family: 'Fusion Pixel';
+  src: url('./../fonts/fusion-pixel.ttf');
+}

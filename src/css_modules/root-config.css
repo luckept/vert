@@ -14,7 +14,8 @@
   /* 界面图标默认颜色 */
   --b3-theme-on-surface-light: #7b6eab;
   /* Mac 得益于优质的渲染效果，仅将英文字体首选改为 Menlo，其他不做变更 */
-  --b3-font-family: "Menlo", "quote", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
+  /* 新增像素风字体作为首选 */
+  --b3-font-family: "Fusion Pixel", "Menlo", "quote", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", "Hiragino Sans GB", "Microsoft Yahei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols";
   /* 界面边界线条 */
   --b3-border-color: #0b0a10;
   /* 滚动条降低颜色亮度 */
