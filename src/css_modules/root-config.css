@@ -34,4 +34,6 @@
   /* 块引用文字颜色 */
   /* TODO: 后续需要调整块引用样式 */
   --b3-protyle-inline-blockref-color: #e262d3;
+  /* 滚动条颜色 */
+  --b3-scroll-color: #151321;
 }

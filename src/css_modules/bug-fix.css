@@ -18,3 +18,8 @@
 .iframe-content iframe {
   border: none;
 }
+
+/* 优化滚动条样式 */
+*::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+}
