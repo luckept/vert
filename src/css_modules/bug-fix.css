@@ -23,3 +23,8 @@
 *::-webkit-scrollbar-thumb {
   border-radius: 0 !important;
 }
+
+/* 优化文章标题对编辑区样式的遮挡 */
+.protyle-content .protyle-title__input {
+  background-color: transparent;
+}
