@@ -10,3 +10,11 @@
   overflow-y: overlay;
   padding-right: 10px;
 }
+
+/* 优化 iframe 挂件样式，去掉不必要的 iframe 边框 */
+.iframe {
+  padding: 0;
+}
+.iframe-content iframe {
+  border: none;
+}
