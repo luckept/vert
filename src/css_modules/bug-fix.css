@@ -28,3 +28,11 @@
 .protyle-content .protyle-title__input {
   background-color: transparent;
 }
+
+/* 优化顶栏前进后退图标颜色 */
+:is(#barBack, #barForward) {
+  color: #9a9fa5;
+}
+:is(#barBack, #barForward):hover {
+  color: #47ffeb;
+}
