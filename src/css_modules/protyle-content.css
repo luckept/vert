@@ -10,6 +10,6 @@
 }
 
 /* 编辑区阴影配置 */
-.protyle-content {
+.layout-tab-container > .protyle > .protyle-content {
   box-shadow: inset 0 0 10px #000;
 }
