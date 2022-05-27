@@ -1,0 +1,10 @@
+/* 内容区标题颜色 */
+.protyle-content .protyle-title__input {
+  color: #d26ace;
+}
+
+/* h1 ～ h3 标题颜色及宽度 */
+.protyle-content :is(.h1, .h2, .h3) {
+  width: fit-content;
+  color: #957cf7;
+}
