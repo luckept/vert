@@ -6,6 +6,7 @@ export class File {
   static themeID = 'vert'
   static themeBasePath = `/Users/luckept/Documents/SiYuan/conf/appearance/themes/${this.themeID}/src`
   static isOpenDirWatch = false
+  static cssRootDirName = 'css_modules'
 
   // 文件处理器
   static fileHandler() {
@@ -34,7 +35,7 @@ export class File {
     if (!this.isOpenDirWatch) {
       this.isOpenDirWatch = true
       // 测试文件夹监听
-      fs.watch(path.resolve(`${this.themeBasePath}/css_modules/`), () => {
+      fs.watch(path.resolve(`${this.themeBasePath}/${this.cssRootDirName}/`), () => {
         this.fileHandler()
       })
     }
@@ -45,7 +46,7 @@ export class File {
     if (isFileTypeEqualCss(fileType)) {
       this.listDirFiles(fileType).forEach((relativePath) => {
         if (isFileTypeEqualCss(fileType)) {
-          this.fileWatcher(`${this.themeBasePath}/css_modules/`, relativePath)
+          this.fileWatcher(`${this.themeBasePath}/${this.cssRootDirName}/`, relativePath)
         } 
       })
     } else {
@@ -58,7 +59,7 @@ export class File {
   static packagingContent(fileName: string, furtherPath: string) {
     // 考虑到有可能先创建文件夹再创建 css 文件，且通常不会有 .css.css 的命名方法，所以这里就不使用正则了，默认 css 模块下的文件夹名不能含有 . 
     if(fileName.endsWith('.css')) {
-      return fileName !== '' ? furtherPath === '' ? `@import url('./css_modules/${fileName}');` : `@import url('./css_modules/${furtherPath}/${fileName}');` : ''
+      return fileName !== '' ? furtherPath === '' ? `@import url('./${this.cssRootDirName}/${fileName}');` : `@import url('./${this.cssRootDirName}/${furtherPath}/${fileName}');` : ''
     } else if (fileName.indexOf('.') !== -1) {
       // 可能他是一个非 css 也非目录的其他文件，此时应返回空字符串并给予提示
       console.error('在 css 模块中错误创建了非 css 文件')
@@ -98,7 +99,7 @@ export class File {
    */
   static listDirFiles(fileType: fileType, furtherPath: string=''): Array<string> {
     if (isFileTypeEqualCss(fileType)) {
-      const dirFiles = fs.readdirSync(path.resolve(`${this.themeBasePath}/css_modules/`, furtherPath))
+      const dirFiles = fs.readdirSync(path.resolve(`${this.themeBasePath}/${this.cssRootDirName}/`, furtherPath))
       return dirFiles
     }
     // Script
