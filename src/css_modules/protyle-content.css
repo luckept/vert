@@ -13,3 +13,15 @@
 .layout-tab-container > .protyle > .protyle-content {
   box-shadow: inset 0 0 10px #000;
 }
+
+/* 大纲线颜色 */
+.protyle-content .protyle-wysiwyg [data-node-id].li>[data-node-id].list:before {
+  width: 2px;
+  top: -4px;
+  background-color: #904e7450;
+  border-color: #6d3b58;
+}
+
+.protyle-content .protyle-action svg {
+  color: #7c6cab;
+}
