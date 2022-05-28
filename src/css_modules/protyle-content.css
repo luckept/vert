@@ -40,3 +40,14 @@
   border-left-color: #957cf7;
   background-color: #957cf720;
 }
+
+/* 代码块 */
+.protyle-content .p code {
+  background-color: #00000070;
+}
+.code-block :is(.hljs.protyle-linenumber, .protyle-linenumber__rows) {
+  background-color: #00000070;
+}
+.code-block .protyle-linenumber__rows span::before {
+  color: #55e56f;
+}
