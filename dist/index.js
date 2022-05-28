@@ -1,13 +1,7 @@
-import { File } from "./class_modules/index.js";
-// 是否是开发环境
-const isDevelopment = false;
+"use strict";
 class Main {
-    static exec(isDevelopment) {
-        if (isDevelopment) {
-            // 文件自动装配
-            File.fileHandler();
-        }
+    static exec() {
         console.log(`Hello Vert`);
     }
 }
-Main.exec(isDevelopment);
+Main.exec();
