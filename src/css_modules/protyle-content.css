@@ -34,3 +34,9 @@
   box-shadow:  1px 1px 3px #09080b,
               -1px -1px 3px #3a3947;
 }
+
+/* 引用 */
+.protyle-content .bq {
+  border-left-color: #957cf7;
+  background-color: #957cf720;
+}
