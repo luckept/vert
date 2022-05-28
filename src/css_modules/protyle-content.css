@@ -21,7 +21,16 @@
   background-color: #904e7450;
   border-color: #6d3b58;
 }
-
 .protyle-content .protyle-action svg {
   color: #7c6cab;
+}
+
+/* 标签 */
+.protyle-content .p span[data-type='tag'] {
+  border: none;
+  padding: 5px 8px;
+  border-radius: 0px;
+  background: #22212c;
+  box-shadow:  1px 1px 3px #09080b,
+              -1px -1px 3px #3a3947;
 }
