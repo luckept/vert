@@ -1,0 +1,25 @@
+/* 搜索界面采用空间利用率更高的左右分屏的模式 */
+#searchList {
+  height: calc(100% - 69px) !important;
+  width: 50%;
+}
+
+#searchPreview {
+  width: 50%;
+  position: absolute;
+  right: 0;
+  top: 85px;
+  bottom: 0;
+  border: 0;
+  z-index: 0;
+}
+
+#searchFilterPanel {
+  z-index: 1;
+  background-color: #151320;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px #000;
+}
