@@ -51,3 +51,11 @@
 .code-block .protyle-linenumber__rows span::before {
   color: #55e56f;
 }
+
+/* 面包屑文字颜色 */
+.protyle-breadcrumb :is(span, svg) {
+  color: #9a7bff !important;
+}
+:is(.b3-tooltips, .protyle-breadcrumb__item):hover :is(svg) {
+  color:  #47ffeb !important;
+}
