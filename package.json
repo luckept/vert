@@ -10,7 +10,7 @@
   "version": "1.0.0",
   "main": "theme.js",
   "scripts": {
-    "watch": "nodemon",
+    "watch": "nodemon --watch packages/ -e ts --exec tsc",
     "commitizen": "commitizen init cz-conventional-changelog --save --save-exact",
     "cz": "git cz"
   },
